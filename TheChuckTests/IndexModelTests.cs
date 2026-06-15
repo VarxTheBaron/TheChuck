@@ -82,5 +82,19 @@ namespace TheChuck.Pages.Tests
             Assert.IsFalse(sut.DisplayText.Contains("CHUCK NORRIS"));
         }
 
+        [TestMethod()]
+        public async Task OnGetShouldCountWordsInJoke()
+        {
+            //Arrange
+            var joke = new Joke() { Value = "word1 word2 word3 word4 word5" };
+            var sut = new IndexModel(NullLogger<IndexModel>.Instance, new JokeServiceFake(joke));
+
+            //Act
+            await sut.OnGet();
+
+            //Assert
+            Assert.AreEqual("5 words in this joke.", sut.WordCount);
+        }
+
     }
 }

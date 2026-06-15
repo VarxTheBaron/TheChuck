@@ -28,6 +28,7 @@ namespace TheChuck.Pages
 
         // Den här används i vyn (det som skapar utseendet på websidan)
         public string DisplayText { get; private set; } = "";
+        public string WordCount { get => DisplayText.Split(' ', StringSplitOptions.RemoveEmptyEntries).Length.ToString() + " words in this joke."; }
 
         //Den här körs varje gång någon surfar till sidan
         public async Task OnGet()
