@@ -34,6 +34,6 @@ app.UseAuthorization();
 
 app.MapRazorPages();
 
-Console.WriteLine("Jag gillar att pusha ändringar");
+Console.WriteLine("Jag gillar att pusha ändringar!");
 
 app.Run();
