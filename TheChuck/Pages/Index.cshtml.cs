@@ -34,10 +34,13 @@ namespace TheChuck.Pages
         {
             try
             {
-                var joke = await _jokeService.GetRandomJoke();
+                Joke? joke;
+                if (Category != null) joke = await _jokeService.GetJokeFromCategory(Category);
+                else joke = await _jokeService.GetRandomJoke();
+
                 DisplayText = joke?.Value ?? "";
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 _logger.LogError(ex, ex.Message);
 
