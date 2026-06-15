@@ -65,5 +65,22 @@ namespace TheChuck.Pages.Tests
             Assert.AreEqual("Violence".ToUpper(), sut.DisplayText.ToUpper());
         }
 
+        [DataRow("Billy Herrington")]
+        [DataRow("Chuck E. Cheese")]
+        [DataTestMethod]
+        public async Task OnGet_ShouldReplaceChuckNorrisWithQueryParam(string name)
+        {
+            //Arrange
+            var joke = new Joke() { Value = "Chuck Norris joke right here!" };
+            var sut = new IndexModel(NullLogger<IndexModel>.Instance, new JokeServiceFake(joke)) { Who = name };
+
+            //Act
+            await sut.OnGet();
+
+            //Assert
+            Assert.IsTrue(sut.DisplayText.Contains(name.ToUpper()));
+            Assert.IsFalse(sut.DisplayText.Contains("CHUCK NORRIS"));
+        }
+
     }
 }

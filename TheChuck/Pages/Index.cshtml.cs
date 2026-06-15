@@ -39,6 +39,8 @@ namespace TheChuck.Pages
                 else joke = await _jokeService.GetRandomJoke();
 
                 DisplayText = joke?.Value ?? "";
+
+                if (Who != null) DisplayText = DisplayText.Replace("Chuck Norris", Who);
             }
             catch (Exception ex)
             {
